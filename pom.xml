@@ -57,6 +57,17 @@
             <artifactId>pmd-java</artifactId>
             <version>6.31.0</version>
         </dependency>
+        <!-- Actualiza log4j a una versión segura -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.17.1</version> <!-- Cambia a la versión más reciente -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.17.1</version> <!-- Cambia a la versión más reciente -->
+        </dependency>
     </dependencies>
 
     <build>
@@ -84,7 +95,9 @@
                 </executions>
                 <configuration>
                     <failBuildOnCVSS>10</failBuildOnCVSS>
+                    <!-- Generate all report formats -->
                     <format>ALL</format>
+                    <!-- Don't use Nexus Analyzer -->
                     <centralAnalyzerEnabled>false</centralAnalyzerEnabled>
                     <failOnError>false</failOnError>
                 </configuration>
@@ -120,6 +133,13 @@
                     <failOnError>false</failOnError>
                     <includeFilterFile>src/main/resources/spotbugs-security-include.xml</includeFilterFile>
                     <excludeFilterFile>src/main/resources/spotbugs-security-exclude.xml</excludeFilterFile>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>LATEST</version> <!-- Auto-update to the latest stable -->
+                        </plugin>
+                    </plugins>
                 </configuration>
                 <executions>
                     <execution>
@@ -128,6 +148,14 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+                    <dependency>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs</artifactId>
+                        <version>4.2.1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <!-- static source code analysis -->
             <plugin>
@@ -221,6 +249,13 @@
                     <failOnError>false</failOnError>
                     <includeFilterFile>src/main/resources/spotbugs-security-include.xml</includeFilterFile>
                     <excludeFilterFile>src/main/resources/spotbugs-security-exclude.xml</excludeFilterFile>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>LATEST</version>
+                        </plugin>
+                    </plugins>
                 </configuration>
             </plugin>
         </plugins>
