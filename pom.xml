@@ -71,11 +71,6 @@
                 <version>2.22.2</version>
             </plugin>
             <!-- checks dependencies for vulnerabilities -->
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
@@ -89,14 +84,11 @@
                 </executions>
                 <configuration>
                     <failBuildOnCVSS>10</failBuildOnCVSS>
-                    <!-- Generate all report formats -->
                     <format>ALL</format>
-                    <!-- Don't use Nexus Analyzer -->
                     <centralAnalyzerEnabled>false</centralAnalyzerEnabled>
                     <failOnError>false</failOnError>
                 </configuration>
             </plugin>
-        </plugins>
             <!-- test coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -118,36 +110,6 @@
                 </executions>
             </plugin>
             <!-- static source code analysis -->
-            <!-- checkstyle checks style. not security related coding errors, etc
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <failsOnError>false</failsOnError>
-                    <failOnViolation>false</failOnViolation>
-                    <consoleOutput>true</consoleOutput>
-                    <suppressionsLocation>src/main/resources/checkstyle-suppressions.xml</suppressionsLocation>
-                    <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>8.40</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            -->
-            <!-- static source code analysis -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
@@ -158,13 +120,6 @@
                     <failOnError>false</failOnError>
                     <includeFilterFile>src/main/resources/spotbugs-security-include.xml</includeFilterFile>
                     <excludeFilterFile>src/main/resources/spotbugs-security-exclude.xml</excludeFilterFile>
-                    <plugins>
-                        <plugin>
-                            <groupId>com.h3xstream.findsecbugs</groupId>
-                            <artifactId>findsecbugs-plugin</artifactId>
-                            <version>LATEST</version> <!-- Auto-update to the latest stable -->
-                        </plugin>
-                    </plugins>
                 </configuration>
                 <executions>
                     <execution>
@@ -173,14 +128,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
-                    <dependency>
-                        <groupId>com.github.spotbugs</groupId>
-                        <artifactId>spotbugs</artifactId>
-                        <version>4.2.1</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <!-- static source code analysis -->
             <plugin>
@@ -204,7 +151,6 @@
                 <artifactId>zap-maven-plugin</artifactId>
                 <version>1.2.1-0</version>
                 <configuration>
-                    <!-- If ZAP is running on localhost, there is no need to define zapHost -->
                     <zapHost>zap</zapHost>
                     <zapPort>8080</zapPort>
                     <targetUrl>http://myapp:8080/rest</targetUrl>
@@ -258,21 +204,6 @@
                 <artifactId>maven-jxr-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
-            <!-- Checkstyle report -->
-            <!-- Checkstyle checks 'style', not security, resource usage, performance
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>checkstyle</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            -->
             <!-- PMD report -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -290,31 +221,8 @@
                     <failOnError>false</failOnError>
                     <includeFilterFile>src/main/resources/spotbugs-security-include.xml</includeFilterFile>
                     <excludeFilterFile>src/main/resources/spotbugs-security-exclude.xml</excludeFilterFile>
-                    <plugins>
-                        <plugin>
-                            <groupId>com.h3xstream.findsecbugs</groupId>
-                            <artifactId>findsecbugs-plugin</artifactId>
-                            <version>LATEST</version> <!-- Auto-update to the latest stable -->
-                        </plugin>
-                    </plugins>
                 </configuration>
             </plugin>
-            <!-- not security related
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>2.8.1</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>dependency-updates-report</report>
-                            <report>plugin-updates-report</report>
-                            <report>property-updates-report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            -->
         </plugins>
     </reporting>
 </project>
