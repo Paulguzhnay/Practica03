@@ -71,6 +71,11 @@
                 <version>2.22.2</version>
             </plugin>
             <!-- checks dependencies for vulnerabilities -->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
@@ -91,6 +96,7 @@
                     <failOnError>false</failOnError>
                 </configuration>
             </plugin>
+        </plugins>
             <!-- test coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
