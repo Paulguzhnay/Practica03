@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.16</version> <!-- Verifica si hay una versión más reciente -->
+            <version>1.6.14</version> <!-- Verifica si hay una versión más reciente -->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
